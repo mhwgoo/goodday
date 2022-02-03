@@ -8,6 +8,8 @@ import (
 
 var user = os.Getenv("USER")
 var tasks []string
+var reads []string
+var lessons []string
 var problems []string
 
 func main() {
@@ -28,16 +30,22 @@ func main() {
 		fmt.Printf("Good Night, %s :)", user)
 	}
 
-	fmt.Println("\n\nToday's tasks:")
+	tasks = []string{"SPEAK: sentences", "GO: godl and git push", "GO: achieve and git push", "KATE: git push"}
+	print("TO DO", tasks)
 
-	tasks = []string{"learn socket", "work on godl", "work on achieve", "git commit kate repos", "read 'The Apology'"}
-	for index, task := range tasks {
-		fmt.Printf("%d %s\n", index+1, task)
-	}
+	reads = []string{"The Apology", "The Guardian", "bash arith"}
+	print("TO READ", reads)
 
-	fmt.Println("\nProblems to be solved:")
+	lessons = []string{"socket", "docker", "bash scripting", "w3m"}
+	print("TO LEARN", lessons)
+
 	problems = []string{"emerge log", "dual monitor support", "visualizer display"}
-	for index, problem := range problems {
-		fmt.Printf("%d %s\n", index+1, problem)
+	print("TO SOLVE", problems)
+}
+
+func print(title string, items []string) {
+	fmt.Printf("\n\n%s:", title)
+	for index, item := range items {
+		fmt.Printf("\n%d %s", index+1, item)
 	}
 }
