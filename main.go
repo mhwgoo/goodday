@@ -7,10 +7,16 @@ import (
 )
 
 var user = os.Getenv("USER")
-var tasks []string
-var reads []string
-var lessons []string
-var problems []string
+
+type task struct {
+	name  string
+	items []item
+}
+
+type item struct {
+	name    string
+	checked bool
+}
 
 func main() {
 	dt := time.Now()
@@ -30,22 +36,33 @@ func main() {
 		fmt.Printf("Good Night, %s :)", user)
 	}
 
-	tasks = []string{"SPEAK: sentences", "GO: godl and git push", "GO: achieve and git push", "KATE: git push"}
-	print("TO DO", tasks)
+	todos := task{
+		name:  "TO DO",
+		items: []item{{"speak: sentence", false}, {"go: godl", true}, {"go: achieve", false}},
+	}
 
-	reads = []string{"The Apology", "The Guardian", "bash arith"}
-	print("TO READ", reads)
+	reads := task{
+		name:  "TO READ",
+		items: []item{{"The Apology", false}, {"The Guardian", false}},
+	}
 
-	lessons = []string{"socket", "docker", "bash scripting", "w3m"}
-	print("TO LEARN", lessons)
+	problems := task{
+		name:  "TO SOLVE",
+		items: []item{{"virtualbox-guest-addons", false}, {"dual monitor", false}},
+	}
 
-	problems = []string{"emerge log", "dual monitor support", "visualizer display"}
-	print("TO SOLVE", problems)
+	print(todos.name, todos.items)
+	print(reads.name, reads.items)
+	print(problems.name, problems.items)
 }
 
-func print(title string, items []string) {
-	fmt.Printf("\n\n%s:", title)
-	for index, item := range items {
-		fmt.Printf("\n%d %s", index+1, item)
+func print(title string, items []item) {
+	fmt.Printf("\n\n%s:\n", title)
+	for key, value := range items {
+		if value.checked {
+			fmt.Printf("%d %s [x]\n", key+1, value.name)
+		} else {
+			fmt.Printf("%d %s [ ]\n", key+1, value.name)
+		}
 	}
 }
