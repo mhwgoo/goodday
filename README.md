@@ -1,14 +1,13 @@
 # achieve
-A terminal dashboard for managing personal tasks
 
-It's under development now. 
-But it is still usable by running `go run main.go`
+A terminal tool for managing personal tasks.
 
-Though it is pretty small, it helps me manage my day-to-day tasks a lot.
+It's under development. But it still works well by running `go run main.go`
 
-I'm working on following features:
-- check status
-- local storage
-- terminal args
-- read in several lines each day of a file content like hard lessons, mottos, etc.
-- ...
+Though it is pretty small right now, it helps me manage my day-to-day tasks a lot.
+
+I'm currently working on the following features:
+    - get terminal args
+    - store data locally
+    - read in several lines each day of a file content like hard lessons, mottos, etc.
+    - and more.

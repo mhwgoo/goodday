@@ -9,13 +9,13 @@ import (
 var user = os.Getenv("USER")
 
 type task struct {
-	name  string
+	name  kind
 	items []item
 }
 
 type item struct {
-	name   string
-	status statusID
+	content string
+	status  statusID
 }
 
 type statusID int
@@ -26,19 +26,23 @@ const (
 	STATUS_DONE
 )
 
+type kind string
+
+var taskKinds = []kind{"CODE", "READ", "SOLVE"}
+
 func main() {
 	codes := task{
-		name:  "TO CODE",
-		items: []item{{"go: godl", STATUS_DOING}, {"go: achieve", STATUS_DONE}, {"go: socket", STATUS_TODO}},
+		name:  taskKinds[0],
+		items: []item{{"go: godl", STATUS_DOING}, {"go: achieve and learn from asana design concepts", STATUS_DONE}, {"go: socket", STATUS_TODO}},
 	}
 
 	reads := task{
-		name:  "TO READ",
+		name:  taskKinds[2],
 		items: []item{{"speak: sentence", STATUS_TODO}, {"The Apology", STATUS_DOING}, {"The Guardian", STATUS_TODO}},
 	}
 
 	problems := task{
-		name:  "TO SOLVE",
+		name:  taskKinds[2],
 		items: []item{{"virtualbox-guest-addons", STATUS_TODO}, {"dual monitor", STATUS_TODO}},
 	}
 
@@ -47,16 +51,16 @@ func main() {
 	print(problems.name, problems.items)
 }
 
-func print(title string, items []item) {
-	fmt.Printf("\n%s:\n", title)
+func print(name kind, items []item) {
+	fmt.Printf("\n%s:\n", name)
 	for key, value := range items {
 		switch value.status {
 		case 0:
-			fmt.Printf("%d %s [ ]\n", key+1, value.name)
+			fmt.Printf("%d %s [ ]\n", key+1, value.content)
 		case 1:
-			fmt.Printf("%d %s [=]\n", key+1, value.name)
+			fmt.Printf("%d %s [=]\n", key+1, value.content)
 		case 2:
-			fmt.Printf("%d %s [x]\n", key+1, value.name)
+			fmt.Printf("%d %s [x]\n", key+1, value.content)
 		}
 	}
 }
