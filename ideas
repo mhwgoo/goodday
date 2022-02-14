@@ -1,0 +1,76 @@
+We use a tool to serve us, not for us to serve the tool.
+Learn from suckless, no config file
+Workspace & Project tend to be stable, so can be modified in source codes
+Absorb some ideas from git
+
+Where does data come from, where does data go, what does data do?!Where does data come from, where does data go, what does data do?!
+
+The Design Achitecture
+
+~/.config/achieve/workspace
+~/.config/achieve/workspace/cambridge
+~/.config/achieve/workspace/personal
+~/.config/achieve/userspace
+~/.config/achieve/log
+~/.config/achieve/user
+~/.config/achieve/workspace
+
+Userspace [General File]
+    - date
+    - greeting
+    - time frame
+    - tasks [list]: upcoming tasks, overdue tasks, completed tasks
+    - projects [list]
+    - workspaces [list]
+    - a quick note
+    - collaborators
+
+Workspace [Directory]
+    - name [y]
+    - description [y]
+    - members [y]
+    - messages
+    - calendar
+    - projects [File] [y]
+        - Details
+            - name [y]
+            - description/notice [y]
+            - status: On track, At risk, Off track, On hold, Complete [y]
+            - due date [y]
+            - roles: owner; member
+            - milestones
+            - goals
+            - key resources
+            - timeline(log activity)
+        - Actions: import, export, archive, duplicate, delete
+        - Dashboard
+        - Workflow(automate process and keep work flowing)
+        - Messages
+        - Files(all attachments to tasks and messages)
+        - Views: list, board, timeline, calendar
+        - Tasks [Line] [y]
+                - Fields
+                    - name [y]
+                    - details [y]
+                    - assignee
+                    - creation time
+                    - due date [y]
+                    - status [y]
+                    - dependency[tasks]
+                    - priority [y]
+                    - subtasks
+                    - add field ...
+                            - title
+                            - type: Single-select, Multi-select, Text, Number, Percentage, Currency ...
+                            - description
+                - collaborators
+                - timeline(log activity)
+                - messages
+                - actions
+                    - create
+                    - delete
+                    - duplicate
+                    - mark as: complete, milestone, approval
+                    - add subtasks
+                    - add attachments
+                    - add collaborators
