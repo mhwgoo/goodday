@@ -37,7 +37,7 @@ var achieve = project{
 		{name: "draw terminal dashboard", kind: feature, status: todo, priority: HIGH},
 		{name: "enable mouse action on the dashboard", kind: feature, status: todo, priority: HIGH},
 		{name: "unicode and emoji support", kind: feature, status: todo, priority: MIDDLE},
-		{name: "add color and font size", kind: feature, status: todo, priority: MIDDLE},
+		{name: "color and font size support", kind: feature, status: todo, priority: MIDDLE},
 		{name: "project and task sort algorithems", kind: feature, status: todo, priority: MIDDLE},
 		{name: "data stattistics", kind: feature, status: todo, priority: MIDDLE},
 	},
