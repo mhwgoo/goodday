@@ -17,7 +17,7 @@ const (
 	COMPLETE
 )
 
-var Feature = project{
+var achieve_feature = project{
 	name:   "Features",
 	desc:   "Panel to manage features",
 	status: ON_TRACK,
@@ -27,7 +27,38 @@ var Feature = project{
 	},
 }
 
-var Bug = project{
+var achieve_bug = project{
+	name:   "Bugs",
+	desc:   "Panel to manage bugs",
+	status: ON_TRACK,
+}
+
+var cambridge_feature = project{
+	name:   "Features",
+	desc:   "Panel to manage features",
+	status: ON_TRACK,
+	tasks: []task{
+		{name: "terminal args", status: todo, priority: HIGH},
+		{name: "words db", status: todo, priority: HIGH},
+	},
+}
+
+var cambridge_bug = project{
+	name:   "Bugs",
+	desc:   "Panel to manage bugs",
+	status: ON_TRACK,
+}
+
+var fakeua_feature = project{
+	name:   "Features",
+	desc:   "Panel to manage features",
+	status: ON_TRACK,
+	tasks: []task{
+		{name: "terminal args", status: todo, priority: HIGH},
+	},
+}
+
+var fakeua_bug = project{
 	name:   "Bugs",
 	desc:   "Panel to manage bugs",
 	status: ON_TRACK,
@@ -38,8 +69,9 @@ var Learn = project{
 	desc:   "Track repos to learn",
 	status: ON_TRACK,
 	tasks: []task{
-		{name: "Youtube", status: todo, priority: MIDDLE},
-		{name: "What Does It Mean To Have Character", status: doing, priority: HIGH},
+		{name: "sqlite", status: todo, priority: HIGH},
+		{name: "dmenu", status: todo, priority: MIDDLE},
+		{name: "youtube", status: todo, priority: MIDDLE},
 	},
 }
 
@@ -60,5 +92,6 @@ var Solve = project{
 	tasks: []task{
 		{name: "Virtualbox Guest Additions", status: todo, priority: MIDDLE},
 		{name: "Dual Monitors", status: todo, priority: MIDDLE},
+		{name: "Chinese Input", status: todo, priority: MIDDLE},
 	},
 }
