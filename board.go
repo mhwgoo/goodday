@@ -2,19 +2,31 @@ package achieve
 
 import (
 	"fmt"
+	"strings"
 )
 
 func Do() {
-	PrintWorkspace(workspaces)
+	PrintProjects(projects)
 }
 
-func PrintWorkspace(wspaces []workspace) {
-	for _, ws := range wspaces {
-		fmt.Printf("\nWORKSPACE: %s\n", ws.name)
-		for index, project := range ws.projects {
-			fmt.Printf("%d %s\n", index+1, project.name)
-			for _, task := range project.tasks {
-				fmt.Printf("  %s %d %s\n", task.status, task.priority, task.name)
+func PrintProjects(pjs []project) {
+	for _, pj := range pjs {
+		fmt.Printf("\n[%s] %s\n", string(string(pj.kind)[0]), strings.ToUpper(pj.name))
+		for _, task := range pj.tasks {
+			if task.priority == HIGH {
+				task.priority = level("***")
+			} else if task.priority == MIDDLE {
+				task.priority = level("*")
+			} else {
+				task.priority = level("")
+			}
+			switch task.status {
+			case todo:
+				fmt.Printf("  - [%s] %s %v [ ]\n", string(string(task.kind)[0]), task.name, task.priority)
+			case doing:
+				fmt.Printf("  - [%s] %s %v [=]\n", string(string(task.kind)[0]), task.name, task.priority)
+			case done:
+				fmt.Printf("  - [%s] %s %v [X]\n", string(string(task.kind)[0]), task.name, task.priority)
 			}
 		}
 	}

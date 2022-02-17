@@ -4,22 +4,31 @@ type task struct {
 	name string
 	desc string
 	//dueDate  time.time
+	kind     ttype
 	status   status
-	priority levelID
+	priority level
 }
+
+type ttype string
+
+var (
+	feature ttype = "feature"
+	bug     ttype = "bug"
+	action  ttype = "action"
+)
 
 type status string
 
 var (
-	todo  status = "TODO"
-	doing status = "DOING"
-	done  status = "DONE"
+	todo  status = "todo"
+	doing status = "doing"
+	done  status = "done"
 )
 
-type levelID int
+type level string
 
-const (
-	HIGH levelID = iota
-	MIDDLE
-	LOW
+var (
+	HIGH   level = "high"
+	MIDDLE level = "middle"
+	LOW    level = "low"
 )
