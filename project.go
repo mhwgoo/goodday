@@ -33,13 +33,13 @@ var achieve = project{
 	status: ON_TRACK,
 	kind:   work,
 	tasks: []task{
-		{name: "establish local db using sqlite", kind: feature, status: todo, priority: HIGH},
-		{name: "draw terminal dashboard", kind: feature, status: todo, priority: HIGH},
-		{name: "enable mouse action on the dashboard", kind: feature, status: todo, priority: HIGH},
-		{name: "unicode and emoji support", kind: feature, status: todo, priority: MIDDLE},
-		{name: "color and font size support", kind: feature, status: todo, priority: MIDDLE},
-		{name: "project and task sort algorithems", kind: feature, status: todo, priority: MIDDLE},
-		{name: "data stattistics", kind: feature, status: todo, priority: MIDDLE},
+		{name: "establish local db using sqlite", kind: feature, status: todo, priority: p1},
+		{name: "draw terminal dashboard", kind: feature, status: todo, priority: p1},
+		{name: "enable mouse action on the dashboard", kind: feature, status: todo, priority: p1},
+		{name: "unicode and emoji support", kind: feature, status: todo, priority: p2},
+		{name: "color and font size support", kind: feature, status: todo, priority: p2},
+		{name: "mix all tasks, sort and view them from different perspectives", kind: feature, status: todo, priority: p2},
+		{name: "data stattistics", kind: feature, status: todo, priority: p2},
 	},
 }
 
@@ -49,8 +49,8 @@ var cambridge = project{
 	status: ON_TRACK,
 	kind:   work,
 	tasks: []task{
-		{name: "terminal args", kind: feature, status: todo, priority: LOW},
-		{name: "words db", kind: feature, status: todo, priority: MIDDLE},
+		{name: "terminal args", kind: feature, status: todo, priority: p3},
+		{name: "words db", kind: feature, status: todo, priority: p2},
 	},
 }
 
@@ -60,7 +60,7 @@ var fakeua = project{
 	status: ON_TRACK,
 	kind:   work,
 	tasks: []task{
-		{name: "terminal args", kind: feature, status: done, priority: HIGH},
+		{name: "terminal args", kind: feature, status: done, priority: p1},
 	},
 }
 
@@ -70,10 +70,10 @@ var learn = project{
 	status: ON_TRACK,
 	kind:   personal,
 	tasks: []task{
-		{name: "sqlite in go", kind: action, status: todo, priority: HIGH},
-		{name: "terminal ui in go", kind: action, status: todo, priority: HIGH},
-		{name: "dmenu", kind: action, status: todo, priority: MIDDLE},
-		{name: "youtube", kind: action, status: todo, priority: MIDDLE},
+		{name: "sqlite in go", kind: action, status: todo, priority: p1},
+		{name: "terminal ui in go", kind: action, status: todo, priority: p1},
+		{name: "dmenu", kind: action, status: todo, priority: p2},
+		{name: "youtube", kind: action, status: todo, priority: p2},
 	},
 }
 
@@ -83,9 +83,9 @@ var read = project{
 	status: ON_TRACK,
 	kind:   personal,
 	tasks: []task{
-		{name: "The Apology", kind: action, status: doing, priority: LOW},
-		{name: "What Does It Mean To Have Character", kind: action, status: doing, priority: LOW},
-		{name: "Suckless Articles", kind: action, status: todo, priority: LOW},
+		{name: "The Apology", kind: action, status: doing, priority: p3},
+		{name: "What Does It Mean To Have Character", kind: action, status: doing, priority: p3},
+		{name: "Suckless Articles", kind: action, status: todo, priority: p3},
 	},
 }
 
@@ -95,8 +95,8 @@ var solve = project{
 	status: ON_TRACK,
 	kind:   personal,
 	tasks: []task{
-		{name: "Virtualbox Guest Additions", kind: action, status: todo, priority: LOW},
-		{name: "Dual Monitors", kind: action, status: todo, priority: LOW},
-		{name: "Chinese Input", kind: action, status: todo, priority: LOW},
+		{name: "Virtualbox Guest Additions", kind: action, status: todo, priority: p3},
+		{name: "Dual Monitors", kind: action, status: todo, priority: p3},
+		{name: "Chinese Input", kind: action, status: todo, priority: p3},
 	},
 }

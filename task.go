@@ -12,6 +12,7 @@ type task struct {
 type ttype string
 
 var (
+	epic    ttype = "epic"
 	feature ttype = "feature"
 	bug     ttype = "bug"
 	action  ttype = "action"
@@ -28,7 +29,7 @@ var (
 type level string
 
 var (
-	HIGH   level = "high"
-	MIDDLE level = "middle"
-	LOW    level = "low"
+	p1 level = "p1"
+	p2 level = "p2"
+	p3 level = "p3"
 )

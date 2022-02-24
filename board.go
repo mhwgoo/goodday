@@ -13,9 +13,9 @@ func PrintProjects(pjs []project) {
 	for _, pj := range pjs {
 		fmt.Printf("\n[%s] %s\n", string(string(pj.kind)[0]), strings.ToUpper(pj.name))
 		for _, task := range pj.tasks {
-			if task.priority == HIGH {
+			if task.priority == p1 {
 				task.priority = level("***")
-			} else if task.priority == MIDDLE {
+			} else if task.priority == p2 {
 				task.priority = level("*")
 			} else {
 				task.priority = level("")
