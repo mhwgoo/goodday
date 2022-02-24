@@ -21,8 +21,8 @@ I'm working on the following right now:
       - [f] project and task sort algorithems * [ ]
       - [f] data stattistics * [ ]
 
-`go run ./cmd/achiever` in the project folder to check its current features and appearance.
+`go run ./cmd/achieve` in the project folder to check its current features and appearance.
 
-As first stage, it's intended to be for personal use.
+As first stage, it's intended to be used for single user.
 
 If this project is interesting to you, you are welcome to join.
