@@ -1,4 +1,4 @@
-package achieve
+package achiever
 
 type task struct {
 	name string

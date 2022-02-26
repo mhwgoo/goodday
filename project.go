@@ -1,4 +1,4 @@
-package achieve
+package achiever
 
 type project struct {
 	name   string
@@ -25,17 +25,16 @@ var (
 	personal ptype = "personal"
 )
 
-var projects = []project{achieve, cambridge, fakeua, learn, read, solve}
+var projects = []project{achiever, cambridge, fakeua, learn, read, solve}
 
-var achieve = project{
-	name:   "achieve",
-	desc:   "Panel to manage features",
+var achiever = project{
+	name:   "achiever",
+	desc:   "Panel to manage achiever features",
 	status: ON_TRACK,
 	kind:   work,
 	tasks: []task{
 		{name: "establish local db using sqlite", kind: feature, status: todo, priority: p1},
-		{name: "draw terminal dashboard", kind: feature, status: todo, priority: p1},
-		{name: "enable mouse action on the dashboard", kind: feature, status: todo, priority: p1},
+		{name: "web ui", kind: feature, status: todo, priority: p1},
 		{name: "unicode and emoji support", kind: feature, status: todo, priority: p2},
 		{name: "color and font size support", kind: feature, status: todo, priority: p2},
 		{name: "mix all tasks, sort and view them from different perspectives", kind: feature, status: todo, priority: p2},
@@ -45,7 +44,7 @@ var achieve = project{
 
 var cambridge = project{
 	name:   "cambridge",
-	desc:   "Panel to manage features",
+	desc:   "Panel to manage cambridge features",
 	status: ON_TRACK,
 	kind:   work,
 	tasks: []task{
@@ -56,7 +55,7 @@ var cambridge = project{
 
 var fakeua = project{
 	name:   "fakeua",
-	desc:   "Panel to manage features",
+	desc:   "Panel to manage fakeua features",
 	status: ON_TRACK,
 	kind:   work,
 	tasks: []task{
@@ -71,9 +70,7 @@ var learn = project{
 	kind:   personal,
 	tasks: []task{
 		{name: "sqlite in go", kind: action, status: todo, priority: p1},
-		{name: "terminal ui in go", kind: action, status: todo, priority: p1},
 		{name: "dmenu", kind: action, status: todo, priority: p2},
-		{name: "youtube", kind: action, status: todo, priority: p2},
 	},
 }
 

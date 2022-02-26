@@ -5,7 +5,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/mhwgoo/achieve"
+	"github.com/mhwgoo/achiever"
 	"github.com/spf13/cobra"
 )
 
@@ -36,5 +36,5 @@ func greet(cmd *cobra.Command, args []string) {
 		fmt.Printf("Good Night, %s :)\n", user)
 	}
 
-	achieve.Do()
+	achiever.Do()
 }

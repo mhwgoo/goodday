@@ -1,11 +1,16 @@
-package achieve
+package achiever
 
 import (
+	"database/sql"
 	"fmt"
 	"strings"
+
+	_ "github.com/mattn/go-sqlite3"
+	"github.com/mhwgoo/achiever/data"
 )
 
 func Do() {
+	PrintQuotes()
 	PrintProjects(projects)
 }
 
@@ -30,4 +35,20 @@ func PrintProjects(pjs []project) {
 			}
 		}
 	}
+}
+
+func PrintQuotes() {
+	DB, _ := sql.Open("sqlite3", "./data/achiever.db")
+	// data.CreateTableS(DB)
+	Pool := data.NewPool(DB)
+
+	quotes_s := Pool.GetS()
+	for index, quote := range quotes_s {
+		fmt.Printf("\n%d %s", index+1, quote.Text)
+	}
+	quotes_z := Pool.GetZGXW()
+	for index, quote := range quotes_z {
+		fmt.Printf("\n%d %s", index+1, quote.Text)
+	}
+	fmt.Printf("\n")
 }
