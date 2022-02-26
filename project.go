@@ -33,12 +33,11 @@ var achiever = project{
 	status: ON_TRACK,
 	kind:   work,
 	tasks: []task{
-		{name: "establish local db using sqlite", kind: feature, status: todo, priority: p1},
-		{name: "web ui", kind: feature, status: todo, priority: p1},
-		{name: "unicode and emoji support", kind: feature, status: todo, priority: p2},
-		{name: "color and font size support", kind: feature, status: todo, priority: p2},
+		{name: "establish local db using sqlite and gorm", kind: feature, status: todo, priority: p1},
+		{name: "create terminal ui using curses", kind: feature, status: todo, priority: p1},
 		{name: "mix all tasks, sort and view them from different perspectives", kind: feature, status: todo, priority: p2},
-		{name: "data stattistics", kind: feature, status: todo, priority: p2},
+		{name: "display data stattistics", kind: feature, status: todo, priority: p2},
+		{name: "display random quotes", kind: feature, status: done, priority: p1},
 	},
 }
 
@@ -69,8 +68,12 @@ var learn = project{
 	status: ON_TRACK,
 	kind:   personal,
 	tasks: []task{
-		{name: "sqlite in go", kind: action, status: todo, priority: p1},
-		{name: "dmenu", kind: action, status: todo, priority: p2},
+		{name: "sqlite as db", kind: action, status: todo, priority: p1},
+		{name: "gorm as orm", kind: action, status: todo, priority: p1},
+		{name: "chi as backend framework", kind: action, status: todo, priority: p1},
+		{name: "curses for terminal ui", kind: action, status: todo, priority: p1},
+		{name: "clash for learning go", kind: action, status: todo, priority: p1},
+		{name: "dmenu for learning how to do a project", kind: action, status: todo, priority: p2},
 	},
 }
 

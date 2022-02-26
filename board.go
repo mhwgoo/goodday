@@ -41,6 +41,9 @@ func PrintQuotes() {
 	DB, _ := sql.Open("sqlite3", "./data/achiever.db")
 	// data.CreateTableS(DB)
 	Pool := data.NewPool(DB)
+	// Pool.AddS("I have to do the same boring jobs day in day out.")
+	// Pool.AddS("I should've gone over the cliff with you. Love Kate.")
+	// Pool.AddS("I was making myself the victim through my own narrative.")
 
 	quotes_s := Pool.GetS()
 	for index, quote := range quotes_s {

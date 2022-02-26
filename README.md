@@ -12,14 +12,12 @@ Those are just my personal opinion. Since I counldn't find a preferable tool to 
 
 I'm working on the following right now:
 
-    [w] ACHIEVE
-      - [f] establish local db using sqlite *** [ ]
-      - [f] draw terminal dashboard *** [ ]
-      - [f] enable mouse action on the dashboard *** [ ]
-      - [f] unicode and emoji support * [ ]
-      - [f] color and font size support * [ ]
-      - [f] project and task sort algorithems * [ ]
-      - [f] data stattistics * [ ]
+    [w] ACHIEVER
+      - [f] establish local db using sqlite and gorm *** [ ]
+      - [f] create terminal ui using curses *** [ ]
+      - [f] mix all tasks, sort and view them from different perspectives * [ ]
+      - [f] display data stattistics * [ ]
+      - [f] display random quotes *** [X]
 
 `go run ./cmd/achieve` in the project folder to check its current features and appearance.
 
