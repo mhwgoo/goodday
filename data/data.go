@@ -2,6 +2,7 @@ package data
 
 import (
 	"database/sql"
+	"strings"
 )
 
 // If not struct, *sql.DB can't be accessed by AddQuote func
@@ -46,6 +47,7 @@ func (p *Pool) GetS() []Quote {
 	quotes := []Quote{}
 	for rows.Next() {
 		rows.Scan(&id, &text)
+		text = strings.ReplaceAll(strings.Trim(text, "'"), "''", "'")
 		quotes = append(quotes, Quote{ID: id, Text: text})
 	}
 	return quotes

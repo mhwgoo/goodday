@@ -35,6 +35,5 @@ func greet(cmd *cobra.Command, args []string) {
 	} else if hour >= 20 && hour < 24 {
 		fmt.Printf("Good Night, %s :)\n", user)
 	}
-
 	achiever.Do()
 }

@@ -48,6 +48,8 @@ var cambridge = project{
 	kind:   work,
 	tasks: []task{
 		{name: "terminal args", kind: feature, status: todo, priority: p3},
+		{name: "remove log file", kind: feature, status: todo, priority: p3},
+		{name: "concurrency", kind: feature, status: todo, priority: p3},
 		{name: "words db", kind: feature, status: todo, priority: p2},
 	},
 }
@@ -69,11 +71,13 @@ var learn = project{
 	kind:   personal,
 	tasks: []task{
 		{name: "sqlite as db", kind: action, status: todo, priority: p1},
+		{name: "cache", kind: action, status: todo, priority: p1},
 		{name: "gorm as orm", kind: action, status: todo, priority: p1},
 		{name: "chi as backend framework", kind: action, status: todo, priority: p1},
 		{name: "curses for terminal ui", kind: action, status: todo, priority: p1},
 		{name: "clash for learning go", kind: action, status: todo, priority: p1},
 		{name: "dmenu for learning how to do a project", kind: action, status: todo, priority: p2},
+		{name: "write medium article", kind: action, status: todo, priority: p2},
 	},
 }
 
@@ -97,6 +101,5 @@ var solve = project{
 	tasks: []task{
 		{name: "Virtualbox Guest Additions", kind: action, status: todo, priority: p3},
 		{name: "Dual Monitors", kind: action, status: todo, priority: p3},
-		{name: "Chinese Input", kind: action, status: todo, priority: p3},
 	},
 }

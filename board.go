@@ -4,12 +4,15 @@ import (
 	"database/sql"
 	"fmt"
 	"strings"
+	"time"
 
 	_ "github.com/mattn/go-sqlite3"
 	"github.com/mhwgoo/achiever/data"
 )
 
 func Do() {
+	PrintRemember("\nREMEMBER: Read the Docs & Posts!")
+	PrintFocus("FOCUS: Learning Gorm")
 	PrintQuotes()
 	PrintProjects(projects)
 }
@@ -41,10 +44,6 @@ func PrintQuotes() {
 	DB, _ := sql.Open("sqlite3", "./data/achiever.db")
 	// data.CreateTableS(DB)
 	Pool := data.NewPool(DB)
-	// Pool.AddS("I have to do the same boring jobs day in day out.")
-	// Pool.AddS("I should've gone over the cliff with you. Love Kate.")
-	// Pool.AddS("I was making myself the victim through my own narrative.")
-
 	quotes_s := Pool.GetS()
 	for index, quote := range quotes_s {
 		fmt.Printf("\n%d %s", index+1, quote.Text)
@@ -54,4 +53,14 @@ func PrintQuotes() {
 		fmt.Printf("\n%d %s", index+1, quote.Text)
 	}
 	fmt.Printf("\n")
+}
+
+func PrintRemember(text string) {
+	newr := Remember{Content: text, Date: time.Now()}
+	fmt.Println(newr.Content)
+}
+
+func PrintFocus(text string) {
+	newf := Focus{Content: text, Date: time.Now()}
+	fmt.Println(newf.Content)
 }
