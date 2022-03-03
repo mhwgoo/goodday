@@ -73,7 +73,7 @@ func CreateTableS(db *sql.DB) {
 
 func (p *Pool) GetZGXW() []Quote {
 	rows, _ := p.DB.Query(`
-			SELECT * FROM ZGXW WHERE ID IN (SELECT ID FROM S ORDER BY RANDOM() LIMIT 10)
+			SELECT * FROM ZGXW WHERE ID IN (SELECT ID FROM ZGXW ORDER BY RANDOM() LIMIT 10)
 	`)
 	var id int
 	var text string
