@@ -30,11 +30,11 @@ func PrintProjects(pjs []project) {
 			}
 			switch task.status {
 			case todo:
-				fmt.Printf("  - [%s] %s %v [ ]\n", string(string(task.kind)[0]), task.name, task.priority)
+				fmt.Printf("  - [%s] %s %v [ ] %s\n", string(string(task.kind)[0]), task.name, task.priority, task.desc)
 			case doing:
-				fmt.Printf("  - [%s] %s %v [=]\n", string(string(task.kind)[0]), task.name, task.priority)
+				fmt.Printf("  - [%s] %s %v [=] %s\n", string(string(task.kind)[0]), task.name, task.priority, task.desc)
 			case done:
-				fmt.Printf("  - [%s] %s %v [X]\n", string(string(task.kind)[0]), task.name, task.priority)
+				fmt.Printf("  - [%s] %s %v [X] %s\n", string(string(task.kind)[0]), task.name, task.priority, task.desc)
 			}
 		}
 	}
