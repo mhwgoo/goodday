@@ -44,6 +44,7 @@ var goodday = section{
 		{name: "display data statistics", kind: feature, status: todo, priority: p2},
 		{name: "display random quotes", kind: feature, status: done, priority: p1},
 		{name: "rename to goodday", kind: feature, status: done, priority: p1},
+		{name: "sort tasks based on status and priority", kind: feature, status: done, priority: p1},
 	},
 }
 
@@ -57,11 +58,11 @@ var cambridge = section{
 		{name: "remove log file", kind: feature, status: done, priority: p3},
 		{name: "add caching mechanism", kind: feature, status: done, priority: p1},
 		{name: "establish words db", kind: feature, status: done, priority: p1},
-		{name: "use python orm", kind: feature, status: todo, priority: p1},
 		{name: "integrate fzf", kind: feature, status: done, priority: p1},
 		{name: "integrate curses", kind: feature, status: todo, priority: p1},
-		{name: "release version 2.0", kind: epic, status: todo, priority: p1},
 		{name: "integrate more dicts, like other cambridge dics & urban", kind: epic, status: todo, priority: p1},
+		{name: "sort word list", kind: feature, status: done, priority: p1},
+		{name: "add create_date to schema", kind: feature, status: todo, priority: p1},
 	},
 }
 
@@ -83,7 +84,6 @@ var learn = section{
 	tasks: []task{
 		{name: "sqlite", kind: action, status: done, priority: p1},
 		{name: "gorm", kind: action, status: doing, priority: p1},
-		{name: "python orm", kind: action, status: todo, priority: p1},
 		{name: "cache mechanism", kind: action, status: done, priority: p1},
 		{name: "chi as backend framework", kind: action, status: todo, priority: p1},
 		{name: "curses", kind: action, status: done, priority: p1},

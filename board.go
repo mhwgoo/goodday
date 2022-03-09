@@ -3,6 +3,7 @@ package goodday
 import (
 	"database/sql"
 	"fmt"
+	"sort"
 	"strings"
 	"time"
 
@@ -11,8 +12,8 @@ import (
 )
 
 func Do() {
-	PrintRemember("\nREMEMBER: Read the Docs & Posts!")
-	PrintFocus("FOCUS: Learning Gorm")
+	PrintRemember("\nREMEMBER: Read the Docs!")
+	PrintFocus("FOCUS: curses")
 	PrintQuotes()
 	PrintSections(sections)
 }
@@ -20,7 +21,7 @@ func Do() {
 func PrintSections(secs []section) {
 	for _, sec := range secs {
 		fmt.Printf("\n[%s] %s\n", string(string(sec.kind)[0]), strings.ToUpper(sec.name))
-		for _, task := range sec.tasks {
+		for _, task := range SortTasks(sec.tasks) {
 			if task.priority == p1 {
 				task.priority = level("***")
 			} else if task.priority == p2 {
@@ -63,4 +64,14 @@ func PrintRemember(text string) {
 func PrintFocus(text string) {
 	newf := Focus{Content: text, Date: time.Now()}
 	fmt.Println(newf.Content)
+}
+
+func SortTasks(ts []task) []task {
+	sort.Slice(ts, func(i, j int) bool {
+		if ts[i].status != ts[j].status {
+			return ts[i].status < ts[j].status
+		}
+		return ts[i].priority < ts[j].priority
+	})
+	return ts
 }
