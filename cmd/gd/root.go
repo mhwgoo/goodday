@@ -5,7 +5,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/mhwgoo/achiever"
+	"github.com/mhwgoo/goodday"
 	"github.com/spf13/cobra"
 )
 
@@ -35,5 +35,5 @@ func greet(cmd *cobra.Command, args []string) {
 	} else if hour >= 20 && hour < 24 {
 		fmt.Printf("Good Night, %s :)\n", user)
 	}
-	achiever.Do()
+	goodday.Do()
 }

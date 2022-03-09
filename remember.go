@@ -1,4 +1,4 @@
-package achiever
+package goodday
 
 import "time"
 

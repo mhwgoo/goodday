@@ -1,4 +1,6 @@
-package achiever
+package goodday
+
+import "time"
 
 type task struct {
 	name string
@@ -7,6 +9,8 @@ type task struct {
 	kind     ttype
 	status   status
 	priority level
+	start    time.Time
+	end      time.Time
 }
 
 type ttype string
@@ -21,9 +25,10 @@ var (
 type status string
 
 var (
-	todo  status = "todo"
-	doing status = "doing"
-	done  status = "done"
+	todo    status = "todo"
+	doing   status = "doing"
+	done    status = "done"
+	pending status = "pending"
 )
 
 type level string

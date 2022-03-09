@@ -1,4 +1,4 @@
-package achiever
+package goodday
 
 import (
 	"database/sql"
@@ -7,20 +7,20 @@ import (
 	"time"
 
 	_ "github.com/mattn/go-sqlite3"
-	"github.com/mhwgoo/achiever/data"
+	"github.com/mhwgoo/goodday/data"
 )
 
 func Do() {
 	PrintRemember("\nREMEMBER: Read the Docs & Posts!")
 	PrintFocus("FOCUS: Learning Gorm")
 	PrintQuotes()
-	PrintProjects(projects)
+	PrintSections(sections)
 }
 
-func PrintProjects(pjs []project) {
-	for _, pj := range pjs {
-		fmt.Printf("\n[%s] %s\n", string(string(pj.kind)[0]), strings.ToUpper(pj.name))
-		for _, task := range pj.tasks {
+func PrintSections(secs []section) {
+	for _, sec := range secs {
+		fmt.Printf("\n[%s] %s\n", string(string(sec.kind)[0]), strings.ToUpper(sec.name))
+		for _, task := range sec.tasks {
 			if task.priority == p1 {
 				task.priority = level("***")
 			} else if task.priority == p2 {
