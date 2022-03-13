@@ -37,14 +37,11 @@ var goodday = section{
 	status: ON_TRACK,
 	kind:   work,
 	tasks: []task{
-		{name: "terminal commands to run different modules", kind: feature, status: todo, priority: p1},
+		{name: "add terminal commands to run different modules", kind: feature, status: todo, priority: p1},
 		{name: "establish local db using sqlite and gorm", kind: feature, status: todo, priority: p1},
 		{name: "create terminal ui using ncurses", kind: feature, status: todo, priority: p1},
 		{name: "mix all tasks, sort and view them from different perspectives", kind: feature, status: todo, priority: p2},
 		{name: "display data statistics", kind: feature, status: todo, priority: p2},
-		{name: "display random quotes", kind: feature, status: done, priority: p1},
-		{name: "rename to goodday", kind: feature, status: done, priority: p1},
-		{name: "sort tasks based on status and priority", kind: feature, status: done, priority: p1},
 	},
 }
 
@@ -54,15 +51,8 @@ var cambridge = section{
 	status: ON_TRACK,
 	kind:   work,
 	tasks: []task{
-		{name: "terminal args", kind: feature, status: done, priority: p3},
-		{name: "remove log file", kind: feature, status: done, priority: p3},
-		{name: "add caching mechanism", kind: feature, status: done, priority: p1},
-		{name: "establish words db", kind: feature, status: done, priority: p1},
-		{name: "integrate fzf", kind: feature, status: done, priority: p1},
 		{name: "integrate curses", kind: feature, status: todo, priority: p1},
 		{name: "integrate more dicts, like other cambridge dics & urban", kind: epic, status: todo, priority: p1},
-		{name: "sort word list", kind: feature, status: done, priority: p1},
-		{name: "add create_date to schema", kind: feature, status: todo, priority: p1},
 	},
 }
 
@@ -72,7 +62,7 @@ var fakeua = section{
 	status: ON_TRACK,
 	kind:   work,
 	tasks: []task{
-		{name: "terminal args", kind: feature, status: done, priority: p1},
+		{name: "add terminal args", kind: feature, status: done, priority: p1},
 	},
 }
 
@@ -82,11 +72,8 @@ var learn = section{
 	status: ON_TRACK,
 	kind:   personal,
 	tasks: []task{
-		{name: "sqlite", kind: action, status: done, priority: p1},
 		{name: "gorm", kind: action, status: doing, priority: p1},
-		{name: "cache mechanism", kind: action, status: done, priority: p1},
 		{name: "chi as backend framework", kind: action, status: todo, priority: p1},
-		{name: "curses", kind: action, status: done, priority: p1},
 		{name: "fzf for go", kind: action, status: todo, priority: p1},
 		{name: "ytfzf for bash", kind: action, status: todo, priority: p1},
 		{name: "dmenu for c", kind: action, status: todo, priority: p2},
@@ -104,7 +91,7 @@ var read = section{
 		{name: "What Does It Mean To Have Character", kind: action, status: doing, priority: p3},
 		{name: "Suckless Articles", kind: action, status: todo, priority: p3},
 		{name: "The Apology", kind: action, status: doing, priority: p3},
-		{name: "王阳明心学", kind: action, status: todo, priority: p3},
+		{name: "王阳明心学", kind: action, status: doing, priority: p3},
 	},
 }
 
