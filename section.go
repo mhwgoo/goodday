@@ -33,13 +33,13 @@ var sections = []section{goodday, cambridge, fakeua, learn, read, solve}
 
 var goodday = section{
 	name:   "goodday",
-	desc:   "Panel to manage goodday features",
+	desc:   "Panel to manage goodday project",
 	status: ON_TRACK,
 	kind:   work,
 	tasks: []task{
 		{name: "add terminal commands to run different modules", kind: feature, status: todo, priority: p1},
-		{name: "establish local db using sqlite and gorm", kind: feature, status: todo, priority: p1},
-		{name: "create terminal ui using ncurses", kind: feature, status: todo, priority: p1},
+		{name: "establish local db using gorm", kind: feature, status: todo, priority: p1},
+		{name: "create terminal ui using tcell", kind: feature, status: todo, priority: p1},
 		{name: "mix all tasks, sort and view them from different perspectives", kind: feature, status: todo, priority: p2},
 		{name: "display data statistics", kind: feature, status: todo, priority: p2},
 	},
@@ -47,18 +47,19 @@ var goodday = section{
 
 var cambridge = section{
 	name:   "cambridge",
-	desc:   "Panel to manage cambridge features",
+	desc:   "Panel to manage cambridge project",
 	status: ON_TRACK,
 	kind:   work,
 	tasks: []task{
-		{name: "integrate curses", kind: feature, status: todo, priority: p1},
+		{name: "use tcell to redesign ui, may also steal some layout of telescope", kind: feature, status: todo, priority: p1},
+		{name: "use hashset to manipulate data", kind: feature, status: todo, priority: p1},
 		{name: "integrate more dicts, like other cambridge dics & urban", kind: epic, status: todo, priority: p1},
 	},
 }
 
 var fakeua = section{
 	name:   "fakeua",
-	desc:   "Panel to manage fakeua features",
+	desc:   "Panel to manage fakeua project",
 	status: ON_TRACK,
 	kind:   work,
 	tasks: []task{
@@ -73,12 +74,10 @@ var learn = section{
 	kind:   personal,
 	tasks: []task{
 		{name: "gorm", kind: action, status: doing, priority: p1},
-		{name: "chi as backend framework", kind: action, status: todo, priority: p1},
-		{name: "fzf for go", kind: action, status: todo, priority: p1},
+		{name: "chi", kind: action, status: todo, priority: p1},
+		{name: "lf for go", kind: action, status: todo, priority: p1},
 		{name: "ytfzf for bash", kind: action, status: todo, priority: p1},
 		{name: "dmenu for c", kind: action, status: todo, priority: p2},
-		{name: "write medium article", kind: action, status: todo, priority: p2},
-		{name: "make coding videos", kind: action, status: todo, priority: p2},
 	},
 }
 
@@ -92,6 +91,7 @@ var read = section{
 		{name: "Suckless Articles", kind: action, status: todo, priority: p3},
 		{name: "The Apology", kind: action, status: doing, priority: p3},
 		{name: "王阳明心学", kind: action, status: doing, priority: p3},
+		{name: "一本关于算法的书", kind: action, status: todo, priority: p3},
 	},
 }
 

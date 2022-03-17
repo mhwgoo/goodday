@@ -12,8 +12,8 @@ import (
 )
 
 func Do() {
-	PrintRemember("\nREMEMBER: Read the Docs!")
-	PrintFocus("FOCUS: curses")
+	PrintRemember("\nREMEMBER: 常将有日思无日，莫把无时当有时")
+	PrintFocus("FOCUS: Gorm")
 	PrintQuotes()
 	PrintSections(sections)
 }
@@ -42,7 +42,7 @@ func PrintSections(secs []section) {
 }
 
 func PrintQuotes() {
-	DB, _ := sql.Open("sqlite3", "./data/achiever.db")
+	DB, _ := sql.Open("sqlite3", "./data/goodday.db")
 	// data.CreateTableS(DB)
 	Pool := data.NewPool(DB)
 	quotes_s := Pool.GetS()
