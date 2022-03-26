@@ -38,7 +38,7 @@ var goodday = section{
 	kind:   work,
 	tasks: []task{
 		{name: "add more terminal commands", kind: feature, status: todo, priority: p1},
-		{name: "establish local db using gorm", kind: feature, status: todo, priority: p1},
+		{name: "add more tables to db", kind: feature, status: todo, priority: p1},
 		{name: "create terminal ui using tcell", kind: feature, status: todo, priority: p1},
 	},
 }
@@ -71,7 +71,7 @@ var learn = section{
 	status: ON_TRACK,
 	kind:   personal,
 	tasks: []task{
-		{name: "chi", kind: action, status: todo, priority: p1},
+		{name: "chi for web dev", kind: action, status: todo, priority: p1},
 		{name: "lf for go", kind: action, status: todo, priority: p1},
 	},
 }

@@ -43,15 +43,18 @@ func PrintSections(secs []section) {
 
 func PrintQuotes() {
 	DB, _ := sql.Open("sqlite3", "./data/goodday.db")
-	// data.CreateTableS(DB)
 	Pool := data.NewPool(DB)
 	quotes_s := Pool.GetS()
 	for index, quote := range quotes_s {
-		fmt.Printf("\n%d %s", index+1, quote.Text)
+		fmt.Printf("\n%d %s", index+1, quote)
 	}
-	quotes_z := Pool.GetZGXW()
+	quotes_z := Pool.GetZ()
 	for index, quote := range quotes_z {
-		fmt.Printf("\n%d %s", index+1, quote.Text)
+		fmt.Printf("\n%d %s", index+1, quote)
+	}
+	quotes_w := Pool.GetW()
+	for index, quote := range quotes_w {
+		fmt.Printf("\n%d %s", index+1, quote)
 	}
 	fmt.Printf("\n")
 }
