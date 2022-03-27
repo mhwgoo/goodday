@@ -13,7 +13,7 @@ import (
 
 func Do() {
 	PrintRemember("\nREMEMBER: 常将有日思无日，莫把无时当有时")
-	PrintFocus("FOCUS: Gorm")
+	PrintFocus("FOCUS: goodday")
 	PrintQuotes()
 	PrintSections(sections)
 }
@@ -44,18 +44,19 @@ func PrintSections(secs []section) {
 func PrintQuotes() {
 	DB, _ := sql.Open("sqlite3", "./data/goodday.db")
 	Pool := data.NewPool(DB)
-	quotes_s := Pool.GetS()
+	quotes_s := Pool.Random("sentences")
 	for index, quote := range quotes_s {
 		fmt.Printf("\n%d %s", index+1, quote)
 	}
-	quotes_z := Pool.GetZ()
+	quotes_z := Pool.Random("zgxw")
 	for index, quote := range quotes_z {
 		fmt.Printf("\n%d %s", index+1, quote)
 	}
-	quotes_w := Pool.GetW()
+	quotes_w := Pool.Random("words")
 	for index, quote := range quotes_w {
 		fmt.Printf("\n%d %s", index+1, quote)
 	}
+	Pool.Add("words", "up in the air")
 	fmt.Printf("\n")
 }
 

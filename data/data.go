@@ -2,6 +2,7 @@ package data
 
 import (
 	"database/sql"
+	"fmt"
 )
 
 // If not struct, *sql.DB can't be accessed by AddQuote func
@@ -15,14 +16,34 @@ func NewPool(db *sql.DB) *Pool {
 	}
 }
 
-func (p *Pool) GetS() []string {
+func (p *Pool) Add(table, item string) {
+	q := fmt.Sprintf("INSERT INTO %s (text) values(?)", table)
+	stmt, _ := p.DB.Prepare(q)
+	stmt.Exec(item)
+}
+
+func (p *Pool) Search(table, word string) []string {
+	q := fmt.Sprintf("SELECT text FROM %s WHERE text LIKE ?", table)
+	s := "%" + word + "%"
+	rows, _ := p.DB.Query(q, s)
+	var text string
+	var quotes []string
+	for rows.Next() {
+		rows.Scan(&text)
+		quotes = append(quotes, text)
+	}
+	return quotes
+}
+
+func (p *Pool) Random(table string) []string {
 	// For a much better performance use:
 	// SELECT * FROM table WHERE id IN (SELECT id FROM table ORDER BY RANDOM() LIMIT x)
 	// SQL engines first load projected fields of rows to memory then sort them,
 	// here we just do a random sort on id field of each row which is in memory because it's indexed,
 	// then separate X of them, and find the whole row using these X ids.
 	// So this consume less RAM and CPU as table grows!
-	rows, _ := p.DB.Query(`SELECT text FROM sentences WHERE id IN (SELECT id FROM sentences ORDER BY RANDOM() LIMIT 10)`)
+	q := fmt.Sprintf("SELECT text FROM %s WHERE id IN (SELECT id FROM %s ORDER BY RANDOM() LIMIT 10)", table, table)
+	rows, _ := p.DB.Query(q)
 	var text string
 	var quotes []string
 	for rows.Next() {
@@ -32,56 +53,8 @@ func (p *Pool) GetS() []string {
 	return quotes
 }
 
-func (p *Pool) GetZ() []string {
-	rows, _ := p.DB.Query(`SELECT text FROM zgxw WHERE id IN (SELECT id FROM zgxw ORDER BY RANDOM() LIMIT 10)`)
-	var text string
-	var quotes []string
-	for rows.Next() {
-		rows.Scan(&text)
-		quotes = append(quotes, text)
-	}
-	return quotes
-}
-
-func (p *Pool) GetW() []string {
-	rows, _ := p.DB.Query(`SELECT text FROM words WHERE id IN (SELECT id FROM words ORDER BY RANDOM() LIMIT 10)`)
-	var text string
-	var quotes []string
-	for rows.Next() {
-		rows.Scan(&text)
-		quotes = append(quotes, text)
-	}
-	return quotes
-}
-
-func (p *Pool) AddS(text string) {
-	stmt, _ := p.DB.Prepare(`INSERT INTO sentences (text) values(?)`)
-	stmt.Exec(text)
-}
-
-func (p *Pool) SearchS(word string) []string {
-	rows, _ := p.DB.Query(`SELECT * FROM setences WHERE text LIKE "%?%"`)
-	var text string
-	var quotes []string
-	for rows.Next() {
-		rows.Scan(&text)
-		quotes = append(quotes, text)
-	}
-	return quotes
-}
-
-func CreateTableS(db *sql.DB) {
-	stmt, _ := db.Prepare(`
-	CREATE TABLE IF NOT EXISTS "sentences" (
-	id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-	text TEXT)`)
-	stmt.Exec()
-}
-
-func CreateTableZ(db *sql.DB) {
-	stmt, _ := db.Prepare(`
-	CREATE TABLE IF NOT EXISTS "zgxw" (
-	id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-	text TEXT)`)
+func (p *Pool) CreateTable(table string) {
+	s := fmt.Sprintf("CREATE TABLE IF NOT EXISTS %s (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, text TEXT)", table)
+	stmt, _ := p.DB.Prepare(s)
 	stmt.Exec()
 }
