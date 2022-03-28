@@ -45,18 +45,14 @@ func PrintQuotes() {
 	DB, _ := sql.Open("sqlite3", "./data/goodday.db")
 	Pool := data.NewPool(DB)
 	quotes_s := Pool.Random("sentences")
-	for index, quote := range quotes_s {
-		fmt.Printf("\n%d %s", index+1, quote)
-	}
 	quotes_z := Pool.Random("zgxw")
-	for index, quote := range quotes_z {
-		fmt.Printf("\n%d %s", index+1, quote)
-	}
 	quotes_w := Pool.Random("words")
-	for index, quote := range quotes_w {
-		fmt.Printf("\n%d %s", index+1, quote)
+	quotes := [][]string{quotes_s, quotes_z, quotes_w}
+	for _, q := range quotes {
+		for index, item := range q {
+			fmt.Printf("\n%d %s", index+1, item)
+		}
 	}
-	Pool.Add("words", "up in the air")
 	fmt.Printf("\n")
 }
 
