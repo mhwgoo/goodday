@@ -42,33 +42,27 @@ func greet(cmd *cobra.Command, args []string) {
 	}
 
 	PrintQuotes()
-	PrintSections(Sections)
+	PrintSections(Pool.GetSections())
 }
 
-func PrintSections(secs []Section) {
+func PrintSections(secs []goodday.Section) {
 	for _, sec := range secs {
-		fmt.Printf("\n[%s] %s\n", string(string(sec.Kind)[0]), strings.ToUpper(sec.Name))
+		fmt.Printf("\n[%s] %s\n", string(sec.Kind[0]), strings.ToUpper(sec.Name))
+
 		for _, task := range SortTasks(sec.Tasks) {
-			if task.Priority == P1 {
-				task.Priority = Level("***")
-			} else if task.Priority == P2 {
-				task.Priority = Level("*")
-			} else {
-				task.Priority = Level("")
-			}
 			switch task.Status {
-			case Todo:
-				fmt.Printf("  - [%s] %s %v [ ] %s\n", string(string(task.Kind)[0]), task.Name, task.Priority, task.Desc)
-			case Doing:
-				fmt.Printf("  - [%s] %s %v [=] %s\n", string(string(task.Kind)[0]), task.Name, task.Priority, task.Desc)
-			case Done:
-				fmt.Printf("  - [%s] %s %v [X] %s\n", string(string(task.Kind)[0]), task.Name, task.Priority, task.Desc)
+			case "todo":
+				fmt.Printf("  - [%s] %s %s [ ]\n", task.Kind, task.Name, task.Priority)
+			case "doing":
+				fmt.Printf("  - [%s] %s %s [=]\n", task.Kind, task.Name, task.Priority)
+			case "done":
+				fmt.Printf("  - [%s] %s %s [X]\n", task.Kind, task.Name, task.Priority)
 			}
 		}
 	}
 }
 
-func SortTasks(ts []Task) []Task {
+func SortTasks(ts []goodday.Task) []goodday.Task {
 	sort.Slice(ts, func(i, j int) bool {
 		if ts[i].Status != ts[j].Status {
 			return ts[i].Status < ts[j].Status

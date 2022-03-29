@@ -127,3 +127,54 @@ func (p *Pool) InsertTask(name, t, status, priority string, section int) {
 	stmt, _ := p.DB.Prepare(s)
 	stmt.Exec(name, t, status, priority, section)
 }
+
+type Task struct {
+	Name     string
+	Kind     string
+	Status   string
+	Priority string
+}
+
+type Section struct {
+	Name  string
+	Kind  string
+	Tasks []Task
+}
+
+func (p *Pool) GetSections() []Section {
+	q := `SELECT id, name, type FROM sections`
+	rows, _ := p.DB.Query(q)
+	var ID int
+	var Name, Type string
+	var sections []Section
+
+	for rows.Next() {
+		rows.Scan(&ID, &Name, &Type)
+		tasks := p.GetTasks(ID)
+		section := Section{Name, Type, tasks}
+		sections = append(sections, section)
+	}
+	return sections
+}
+
+func (p *Pool) GetTasks(id int) []Task {
+	q := fmt.Sprintf("SELECT name, type, status, priority FROM tasks WHERE section_id = %d", id)
+
+	rows, _ := p.DB.Query(q)
+	var n string
+	var t string
+	var s string
+	var pr string
+	var tasks []Task
+	for rows.Next() {
+		rows.Scan(&n, &t, &s, &pr)
+		task := Task{
+			Name:     n,
+			Kind:     t,
+			Status:   s,
+			Priority: pr,
+		}
+		tasks = append(tasks, task)
+	}
+	return tasks
+}
