@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	defer un(trace("rootCmd"))
+	defer un(trace("Goodday"))
 	exitOnError(rootCmd.Execute())
 }
 
@@ -25,5 +25,5 @@ func trace(s string) (string, time.Time) {
 
 func un(s string, startTime time.Time) {
 	endTime := time.Now()
-	fmt.Println("\nEND:", s, "ElapsedTime in seconds:", endTime.Sub(startTime))
+	fmt.Println("\nEND:", s, "ElapsedTime:", endTime.Sub(startTime))
 }
