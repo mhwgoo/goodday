@@ -3,7 +3,6 @@ package main
 import (
 	"database/sql"
 	"fmt"
-	"log"
 	"os"
 	"sort"
 	"strings"
@@ -15,6 +14,10 @@ import (
 )
 
 var user = os.Getenv("USER")
+
+var DB, _ = sql.Open("sqlite3", "/home/kate/go/src/github.com/mhwgoo/goodday/goodday.db")
+var Pool = goodday.NewPool(DB)
+
 var rootCmd = &cobra.Command{
 	Use: os.Args[0],
 	Run: greet,
@@ -45,21 +48,21 @@ func greet(cmd *cobra.Command, args []string) {
 func PrintSections(secs []Section) {
 	for _, sec := range secs {
 		fmt.Printf("\n[%s] %s\n", string(string(sec.Kind)[0]), strings.ToUpper(sec.Name))
-		for _, Task := range SortTasks(sec.Tasks) {
-			if Task.Priority == P1 {
-				Task.Priority = Level("***")
-			} else if Task.Priority == P2 {
-				Task.Priority = Level("*")
+		for _, task := range SortTasks(sec.Tasks) {
+			if task.Priority == P1 {
+				task.Priority = Level("***")
+			} else if task.Priority == P2 {
+				task.Priority = Level("*")
 			} else {
-				Task.Priority = Level("")
+				task.Priority = Level("")
 			}
-			switch Task.Status {
+			switch task.Status {
 			case Todo:
-				fmt.Printf("  - [%s] %s %v [ ] %s\n", string(string(Task.Kind)[0]), Task.Name, Task.Priority, Task.Desc)
+				fmt.Printf("  - [%s] %s %v [ ] %s\n", string(string(task.Kind)[0]), task.Name, task.Priority, task.Desc)
 			case Doing:
-				fmt.Printf("  - [%s] %s %v [=] %s\n", string(string(Task.Kind)[0]), Task.Name, Task.Priority, Task.Desc)
+				fmt.Printf("  - [%s] %s %v [=] %s\n", string(string(task.Kind)[0]), task.Name, task.Priority, task.Desc)
 			case Done:
-				fmt.Printf("  - [%s] %s %v [X] %s\n", string(string(Task.Kind)[0]), Task.Name, Task.Priority, Task.Desc)
+				fmt.Printf("  - [%s] %s %v [X] %s\n", string(string(task.Kind)[0]), task.Name, task.Priority, task.Desc)
 			}
 		}
 	}
@@ -76,12 +79,6 @@ func SortTasks(ts []Task) []Task {
 }
 
 func PrintQuotes() {
-	DB, err := sql.Open("sqlite3", "/home/kate/go/src/github.com/mhwgoo/goodday/goodday.db")
-	if err != nil {
-		log.Println(err)
-	}
-
-	Pool := goodday.NewPool(DB)
 	quotes_s := Pool.Random("sentences")
 	quotes_z := Pool.Random("zgxw")
 	quotes_w := Pool.Random("words")
@@ -97,13 +94,26 @@ func PrintQuotes() {
 /*
 func init() {
 	Pool.CreateTableTask()
-	Pool.CreateTableTaskType()
-	Pool.CreateTableTaskStatus()
-	Pool.CreateTableTaskPriority()
 	Pool.CreateTableSection()
-	Pool.CreateTableSectionType()
-	Pool.CreateTableSectionStatus()
 	Pool.CreateTableNotice()
-	Pool.CreateTableNoticeType()
+	Pool.InsertSection("GOODDAY", "work")
+	Pool.InsertSection("CAMBRIDGE", "work")
+	Pool.InsertSection("LEARN", "personal")
+	Pool.InsertSection("READ", "personal")
+	Pool.InsertSection("SOLVE", "personal")
+	Pool.InsertNotice("Read the docs!", "note")
+	Pool.InsertTask("Add terminal commands", "feature", "todo", "P1", 1)
+	Pool.InsertTask("Add db methods", "feature", "doing", "P1", 1)
+	Pool.InsertTask("Use Tcell", "epic", "todo", "P1", 1)
+	Pool.InsertTask("Hashset algorithms", "feature", "todo", "P2", 2)
+	Pool.InsertTask("Add Urban & Webster", "epic", "todo", "P2", 2)
+	Pool.InsertTask("Add ncurses", "epic", "todo", "P2", 2)
+	Pool.InsertTask("chi for web dev", "action", "todo", "P3", 3)
+	Pool.InsertTask("lf for go", "action", "todo", "P3", 3)
+	Pool.InsertTask("Suckless Articles", "action", "todo", "P3", 4)
+	Pool.InsertTask("The Apology", "action", "doing", "P3", 4)
+	Pool.InsertTask("传习录", "action", "doing", "P3", 4)
+	Pool.InsertTask("Virtualbox Guest Additions", "action", "todo", "P3", 5)
+	Pool.InsertTask("Dual Monitors", "action", "todo", "P3", 5)
 }
 */

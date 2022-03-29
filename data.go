@@ -58,103 +58,38 @@ func (p *Pool) CreateTable(table string) {
 	stmt.Exec()
 }
 
-func (p *Pool) CreateTableTask() {
-	s := `CREATE TABLE IF NOT EXISTS tasks (
-		id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-		created_at DEFAULT CURRENT_DATE,
-		updated_at DEFAULT CURRENT_DATE,
-		name TEXT NOT NULL,
-		description TEXT,
-		start_date TEXT,
-		due_date TEXT,
-		dependency INTEGER, 
-		type_id INTEGER NOT NULL,
-		status_id INTEGER NOT NULL,
-		priority_id INTEGER NOT NULL,
-		section_id INTEGER NOT NULL,
-		FOREIGN KEY(type_id) REFERENCES task_type(id) ON DELETE SET NULL,
-		FOREIGN KEY(status_id) REFERENCES task_status(id) ON DELETE SET NULL,
-		FOREIGN KEY(priority_id) REFERENCES task_priority(id) ON DELETE SET NULL,
-		FOREIGN KEY(section_id) REFERENCES sections(id) ON DELETE CASCADE,
-		FOREIGN KEY(dependency) REFERENCES tasks(id) ON DELETE SET NULL
-	)`
-	stmt, _ := p.DB.Prepare(s)
-	stmt.Exec()
-}
-
-func (p *Pool) CreateTableTaskType() {
-	s := `CREATE TABLE IF NOT EXISTS task_type (
-		id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-		created_at DEFAULT CURRENT_DATE,
-		updated_at DEFAULT CURRENT_DATE,
-		name TEXT NOT NULL,
-		description TEXT
-	)`
-	stmt, _ := p.DB.Prepare(s)
-	stmt.Exec()
-}
-
-func (p *Pool) CreateTableTaskStatus() {
-	s := `CREATE TABLE IF NOT EXISTS task_status (
-		id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-		created_at DEFAULT CURRENT_DATE,
-		updated_at DEFAULT CURRENT_DATE,
-		name TEXT NOT NULL,
-		description TEXT
-	)`
-	stmt, _ := p.DB.Prepare(s)
-	stmt.Exec()
-}
-
-func (p *Pool) CreateTableTaskPriority() {
-	s := `CREATE TABLE IF NOT EXISTS task_priority (
-		id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-		created_at DEFAULT CURRENT_DATE,
-		updated_at DEFAULT CURRENT_DATE,
-		name TEXT NOT NULL,
-		description TEXT
-	)`
-	stmt, _ := p.DB.Prepare(s)
-	stmt.Exec()
-}
-
 func (p *Pool) CreateTableSection() {
 	s := `CREATE TABLE IF NOT EXISTS sections (
 		id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-		created_at DEFAULT CURRENT_DATE,
-		updated_at DEFAULT CURRENT_DATE,
+		created_at DEFAULT CURRENT_TIMESTAMP,
+		updated_at DEFAULT CURRENT_TIMESTAMP,
 		name TEXT NOT NULL,
 		description TEXT,
 		start_date TEXT,
 		due_date TEXT,
-		type_id INTEGER NOT NULL,
-		status_id INTEGER NOT NULL,
-		FOREIGN KEY(type_id) REFERENCES section_type(id) ON DELETE SET NULL,
-		FOREIGN KEY(status_id) REFERENCES section_status(id) ON DELETE SET NULL
+		type TEXT NOT NULL CHECK (type="work" or type="personal"),
+		status TEXT NOT NULL CHECK (status="on_track" or status="on_hold" or status="complete") DEFAULT "on_track"
 	)`
 	stmt, _ := p.DB.Prepare(s)
 	stmt.Exec()
 }
 
-func (p *Pool) CreateTableSectionType() {
-	s := `CREATE TABLE IF NOT EXISTS section_type (
+func (p *Pool) CreateTableTask() {
+	s := `CREATE TABLE IF NOT EXISTS tasks (
 		id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-		created_at DEFAULT CURRENT_DATE,
-		updated_at DEFAULT CURRENT_DATE,
+		created_at DEFAULT CURRENT_TIMESTAMP,
+		updated_at DEFAULT CURRENT_TIMESTAMP,
 		name TEXT NOT NULL,
-		description TEXT
-	)`
-	stmt, _ := p.DB.Prepare(s)
-	stmt.Exec()
-}
-
-func (p *Pool) CreateTableSectionStatus() {
-	s := `CREATE TABLE IF NOT EXISTS section_status (
-		id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-		created_at DEFAULT CURRENT_DATE,
-		updated_at DEFAULT CURRENT_DATE,
-		name TEXT NOT NULL,
-		description TEXT
+		description TEXT,
+		start_date TEXT,
+		due_date TEXT,
+		dependency_id INTEGER, 
+		type TEXT NOT NULL CHECK (type="epic" or type="feature" or type="bug" or type="action"),
+		status TEXT NOT NULL CHECK (status="todo" or status="doing" or status="done" or status="pending"),
+		priority TEXT NOT NULL CHECK (priority="P1" or priority="P2" or priority="P3"),
+		section_id INTEGER NOT NULL,
+		FOREIGN KEY(dependency_id) REFERENCES tasks(id) ON DELETE SET NULL,
+		FOREIGN KEY(section_id) REFERENCES sections(id) ON DELETE CASCADE 
 	)`
 	stmt, _ := p.DB.Prepare(s)
 	stmt.Exec()
@@ -163,27 +98,32 @@ func (p *Pool) CreateTableSectionStatus() {
 func (p *Pool) CreateTableNotice() {
 	s := `CREATE TABLE IF NOT EXISTS notices (
 		id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-		created_at DEFAULT CURRENT_DATE,
-		updated_at DEFAULT CURRENT_DATE,
+		created_at DEFAULT CURRENT_TIMESTAMP,
+		updated_at DEFAULT CURRENT_TIMESTAMP,
 		name TEXT NOT NULL,
-		description TEXT
+		description TEXT,
 		start_date DEFAULT CURRENT_DATE,
-		due_date TEXT NOT NULL,
-		type_id INTEGER NOT NULL,
-		FOREIGN KEY(type_id) REFERENCES notice_type(id) ON DELETE SET NULL
+		due_date TEXT,
+		type TEXT NOT NULL CHECK (type="task" or type="note" or type="quote")
 	)`
 	stmt, _ := p.DB.Prepare(s)
 	stmt.Exec()
 }
 
-func (p *Pool) CreateTableNoticeType() {
-	s := `CREATE TABLE IF NOT EXISTS notice_type (
-		id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-		created_at DEFAULT CURRENT_DATE,
-		updated_at DEFAULT CURRENT_DATE,
-		name TEXT NOT NULL,
-		description TEXT
-	)`
+func (p *Pool) InsertSection(name, t string) {
+	s := `INSERT INTO sections (name, type) values(?, ?)`
 	stmt, _ := p.DB.Prepare(s)
-	stmt.Exec()
+	stmt.Exec(name, t)
+}
+
+func (p *Pool) InsertNotice(name, t string) {
+	s := `INSERT INTO notices (name, type) values(?, ?)`
+	stmt, _ := p.DB.Prepare(s)
+	stmt.Exec(name, t)
+}
+
+func (p *Pool) InsertTask(name, t, status, priority string, section int) {
+	s := `INSERT INTO tasks (name, type, status, priority, section_id) values(?, ?, ?, ?, ?)`
+	stmt, _ := p.DB.Prepare(s)
+	stmt.Exec(name, t, status, priority, section)
 }
