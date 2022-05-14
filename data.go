@@ -21,6 +21,18 @@ func (p *Pool) Add(table, item string) {
 	stmt.Exec(item)
 }
 
+func (p *Pool) Delete(table, item string) {
+	q := fmt.Sprintf("DELETE FROM %s WHERE text = ?", table)
+	stmt, _ := p.DB.Prepare(q)
+	stmt.Exec(item)
+}
+
+func (p *Pool) Update(table, item_new, item_old string) {
+	q := fmt.Sprintf("UPDATE %s SET text = ? WHERE text = ?", table)
+	stmt, _ := p.DB.Prepare(q)
+	stmt.Exec(item_new, item_old)
+}
+
 func (p *Pool) Search(table, word string) []string {
 	q := fmt.Sprintf("SELECT text FROM %s WHERE text LIKE ?", table)
 	s := "%" + word + "%"

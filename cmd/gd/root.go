@@ -81,6 +81,7 @@ func PrintQuotes() {
 		for index, item := range q {
 			fmt.Printf("\n%d %s", index+1, item)
 		}
+		fmt.Printf("\n")
 	}
 	fmt.Printf("\n")
 }
